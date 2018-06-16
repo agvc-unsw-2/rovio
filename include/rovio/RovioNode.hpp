@@ -476,6 +476,7 @@ class RovioNode{
    * @todo generalize
    */
   void imgCallback0(const sensor_msgs::ImageConstPtr & img){
+    ROS_INFO("IMG0");
     std::lock_guard<std::mutex> lock(m_filter_);
     imgCallback(img,0);
   }
@@ -486,6 +487,7 @@ class RovioNode{
    * @todo generalize
    */
   void imgCallback1(const sensor_msgs::ImageConstPtr & img) {
+    ROS_INFO("IMG1");
     std::lock_guard<std::mutex> lock(m_filter_);
     if(mtState::nCam_ > 1) imgCallback(img,1);
   }
@@ -650,6 +652,7 @@ class RovioNode{
       if(plotTiming){
         ROS_INFO_STREAM(" == Filter Update: " << (t2-t1)/cv::getTickFrequency()*1000 << " ms for processing " << c1-c2 << " images, average: " << timing_T/timing_C);
       }
+
       if(mpFilter_->safe_.t_ > oldSafeTime){ // Publish only if something changed
         for(int i=0;i<mtState::nCam_;i++){
           if(!mpFilter_->safe_.img_[i].empty() && mpImgUpdate_->doFrameVisualisation_){
