@@ -476,7 +476,7 @@ class RovioNode{
    * @todo generalize
    */
   void imgCallback0(const sensor_msgs::ImageConstPtr & img){
-    ROS_INFO("IMG0");
+    //ROS_INFO("IMG0");
     std::lock_guard<std::mutex> lock(m_filter_);
     imgCallback(img,0);
   }
@@ -487,7 +487,7 @@ class RovioNode{
    * @todo generalize
    */
   void imgCallback1(const sensor_msgs::ImageConstPtr & img) {
-    ROS_INFO("IMG1");
+    //ROS_INFO("IMG1");
     std::lock_guard<std::mutex> lock(m_filter_);
     if(mtState::nCam_ > 1) imgCallback(img,1);
   }
