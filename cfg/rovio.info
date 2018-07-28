@@ -1,5 +1,6 @@
 ; You can partially override parameter set in this file by creating your own subset of parameter in a separate info-file and include it with:
-#include "/home/jabez/mbz_ws/src/rovio/cfg/custom.info"
+; #include "/home/jabez/mbz_ws/src/rovio/cfg/custom.info"
+#include "/home/jabez/mbz_ws/src/rovio/cfg/c9-strain.info"
 Common
 {
 	doVECalibration true;		Should the camera-IMU extrinsics be calibrated online

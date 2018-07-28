@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <launch>
-  <include file="$(find scripts)/launch/repub_bgr2mono.launch" />
+  <arg name="cam_topic" value="zed" />
+  <include file="$(find scripts)/launch/repub_bgr2mono.launch">
+    <arg name="cam_topic" value="$(arg cam_topic)" />
+  </include>
   <node pkg="rovio" type="rovio_node" name="rovio" output="screen">
       <param name="filter_config" value="$(find rovio)/cfg/rovio.info"/>
-      <param name="camera0_config" value="$(find rovio)/cfg/zed_cam0.yaml"/>
-      <param name="camera1_config" value="$(find rovio)/cfg/zed_cam1.yaml"/>
-      <remap to="/usb_cam/left/image_raw/mono8" from="/cam0/image_raw" />
-      <remap to="/usb_cam/right/image_raw/mono8" from="/cam1/image_raw" />
-      <remap to="/dji_sdk/imu" from="imu0" />
+      <!--<param name="camera0_config" value="$(find rovio)/cfg/zed_cam0.yaml"/>-->
+      <!--<param name="camera1_config" value="$(find rovio)/cfg/zed_cam1.yaml"/>-->
+      <param name="camera0_config" value="$(find rovio)/cfg/c920.yaml"/>
+      <param name="camera1_config" value="$(find rovio)/cfg/c920.yaml"/>
+      <!--<remap to="/$(arg cam_topic)/left/image_raw/mono8" from="/cam0/image_raw" />-->
+      <!--<remap to="/$(arg cam_topic)/right/image_raw/mono7" from="/cam1/image_raw" />-->
+      <remap to="/c920/usb_cam/image_raw" from="/cam1/image_raw" />
+      <remap to="/c920/usb_cam/image_raw" from="/cam0/image_raw" />
+      <!--<remap to="/dji_sdk/imu" from="imu0" />-->
+      <remap to="/imu/imu" from="imu0" />
   </node>
 </launch>
